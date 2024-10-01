@@ -20,7 +20,6 @@ def parse_patient_data(data):
 
 
 def add_pt_to_db(patient_info):
-    print(patient_info)
     name, type, heartrates = patient_info[0], patient_info[1], patient_info[2]
     heartrates = [float(x) for x in heartrates.split(',')]
     heartrates = convert_heartrates(heartrates, type)
@@ -58,3 +57,6 @@ def main():
     parse_patient_data(data)
     above_threshold_data = calculate_heartrate_stats()
     display_results(above_threshold_data)
+
+if __name__ == "__main__":
+    main()
