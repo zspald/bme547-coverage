@@ -58,5 +58,6 @@ def main():
     above_threshold_data = calculate_heartrate_stats()
     display_results(above_threshold_data)
 
+
 if __name__ == "__main__":
     main()
