@@ -22,10 +22,21 @@ def parse_patient_data(data):
 def add_pt_to_db(patient_info):
     print(patient_info)
     name, type, heartrates = patient_info[0], patient_info[1], patient_info[2]
-    heartrates = [int(x) for x in heartrates.split(',')]
+    heartrates = [float(x) for x in heartrates.split(',')]
+    heartrates = convert_heartrates(heartrates, type)
     patient = Patient(name)
     patient.add_heartrate_data(heartrates)
     db.append(patient)
+
+
+def convert_heartrates(heartrates, type):
+    if type == 'BPS':
+        conv_heartrates = [x * 60 for x in heartrates]
+    elif type == 'BPM':
+        conv_heartrates = heartrates
+    else:
+        raise ValueError("Invalid type")
+    return conv_heartrates
 
 
 def calculate_heartrate_stats():
